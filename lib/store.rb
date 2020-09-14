@@ -11,7 +11,7 @@ class Store < ActiveRecord::Base
 
   def has_at_least_one_apparel_type
     if !mens_apparel && !womens_apparel
-      errors.add(:mens_apparel, "need at least one apparel type")
+      errors.add(:apparel, "need at least one apparel type")
     end
   end
 end
