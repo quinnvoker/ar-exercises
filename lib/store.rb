@@ -6,4 +6,12 @@ class Store < ActiveRecord::Base
     only_integer: true,
     greater_than_or_equal_to: 0
   }
+
+  validate :has_at_least_one_apparel_type
+
+  def has_at_least_one_apparel_type
+    if !mens_apparel && !womens_apparel
+      errors.add(:mens_apparel, "need at least one apparel type")
+    end
+  end
 end
