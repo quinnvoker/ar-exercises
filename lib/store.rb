@@ -9,6 +9,18 @@ class Store < ActiveRecord::Base
 
   validate :has_at_least_one_apparel_type
 
+  before_destroy :before_destroy
+
+  def before_destroy
+    if employees.size > 0
+      false
+    else
+      true
+    end
+  end
+
+  private
+
   def has_at_least_one_apparel_type
     if !mens_apparel && !womens_apparel
       errors.add(:apparel, "need at least one apparel type")
